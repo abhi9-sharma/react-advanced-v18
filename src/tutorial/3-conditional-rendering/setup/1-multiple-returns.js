@@ -2,16 +2,38 @@ import React, { useState, useEffect } from 'react';
 const url = 'https://api.github.com/users/QuincyLarson';
 const MultipleReturns = () => {
 
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   
-  // setLoading(false)
+  const [isError, setIsError] = useState(false)
 
-  if(loading){
-    return <h3>loading...</h3>
+  const [user, setUser] = useState('default')
+
+  const getUSers = async() =>{
+    const getData = await fetch(url)
+    const user = await getData.json()
+    const {login} = user
+    setUser(login)
+    setTimeout(setIsLoading(false), 5000)
+  }
+
+  useEffect(()=>{
+    getUSers()
+  }, [])
+
+  if(isLoading){
+    return <>
+      Loading...
+    </>
+  }
+
+  if(isError){
+    return <>
+      Error...
+    </>
   }
 
   return <>
-    abcd
+    <h1>{user}</h1>
   </>;
 };
 
