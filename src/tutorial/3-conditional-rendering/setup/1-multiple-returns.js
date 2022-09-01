@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react';
 const url = 'https://api.github.com/users/QuincyLarson';
 const MultipleReturns = () => {
-  return <h2>multiple returns</h2>;
+
+  const [loading, setLoading] = useState(true)
+  
+  // setLoading(false)
+
+  if(loading){
+    return <h3>loading...</h3>
+  }
+
+  return <>
+    abcd
+  </>;
 };
 
 export default MultipleReturns;
